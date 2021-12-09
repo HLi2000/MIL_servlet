@@ -27,6 +27,7 @@ public class Selvet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getServletPath();
+
         switch (path) {
             case "/search": {
                 String reqBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
@@ -42,6 +43,7 @@ public class Selvet extends HttpServlet {
                 resp.getWriter().write(jsonString);
                 break;
             }
+
             case "/thumbnail": {
                 String fileName = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 
@@ -51,6 +53,7 @@ public class Selvet extends HttpServlet {
                 setRespOS(resp, is);
                 break;
             }
+
             case "/img": {
                 String fileName = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 

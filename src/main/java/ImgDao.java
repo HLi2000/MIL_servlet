@@ -16,9 +16,8 @@ public class ImgDao {
             BufferedImage buffImage = imp.getBufferedImage();
             ByteArrayOutputStream baos=new ByteArrayOutputStream();
             ImageIO.write(buffImage, "jpg", baos);
-            InputStream is = new ByteArrayInputStream(baos.toByteArray());
 
-            return is;
+            return new ByteArrayInputStream(baos.toByteArray());
         } catch (Exception e) {
             return null;
         }

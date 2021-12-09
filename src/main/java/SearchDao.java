@@ -19,7 +19,7 @@ public class SearchDao {
         PreparedStatement psmt;
         String sql;
         ResultSet rs;
-        List<Img> img_l = new ArrayList<Img>();
+        List<Img> img_l = new ArrayList<>();
 
         try {
             conn = DBDao.getConnection();
@@ -51,7 +51,6 @@ public class SearchDao {
                 psmt = conn.prepareStatement(sql);
                 psmt.setArray(1, modality_aa);
                 psmt.setArray(2, region_aa);
-                rs = psmt.executeQuery();
             }
             else{
                 sql = "SELECT * FROM imgs WHERE Modality = ANY (?) AND Region = ANY (?) AND Patient_name=?";
@@ -60,8 +59,8 @@ public class SearchDao {
                 psmt.setArray(2, region_aa);
                 psmt.setString(3, patient_name);
                 //sql = psmt.toString();
-                rs = psmt.executeQuery();
             }
+            rs = psmt.executeQuery();
 
             while (rs.next()) {
                 Img img=new Img();
@@ -85,8 +84,7 @@ public class SearchDao {
             DBDao.closeConnection(conn);
         }
 
-        Img[] img_a = img_l.toArray(new Img[0]);
-        return img_a;
+        return img_l.toArray(new Img[0]);
     }
 
     public InputStream create_thumbnail(String filename) {
@@ -99,8 +97,8 @@ public class SearchDao {
             int width = imp.getWidth();
             int height = imp.getHeight();
 
-            int cropWidth = 0;
-            int cropHeight = 0;
+            int cropWidth;
+            int cropHeight;
 
             if(width > height) {
                 cropWidth = height;
@@ -136,9 +134,8 @@ public class SearchDao {
             BufferedImage buffImage = imp.getBufferedImage();
             ByteArrayOutputStream baos=new ByteArrayOutputStream();
             ImageIO.write(buffImage, "jpg", baos);
-            InputStream is = new ByteArrayInputStream(baos.toByteArray());
 
-            return is;
+            return new ByteArrayInputStream(baos.toByteArray());
         } catch (Exception e) {
             return null;
         }

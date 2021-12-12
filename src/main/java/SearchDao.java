@@ -88,7 +88,7 @@ public class SearchDao {
     }
 
     public InputStream create_thumbnail(String filename) {
-        String fileAbsolutePath="./imageinfo/"+filename;
+        String fileAbsolutePath="./imgs/"+filename;
         try {
             ImagePlus imp = IJ.openImage(fileAbsolutePath);
             ImageProcessor ip = imp.getProcessor();

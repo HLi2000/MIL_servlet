@@ -47,13 +47,13 @@ public class SearchDao {
             }
 
             if (patient_name.equals("")){
-                sql = "SELECT * FROM imageinfo WHERE modality = ANY (?) AND region = ANY (?)";
+                sql = "SELECT * FROM imgs WHERE modality = ANY (?) AND region = ANY (?)";
                 psmt = conn.prepareStatement(sql);
                 psmt.setArray(1, modality_aa);
                 psmt.setArray(2, region_aa);
             }
             else{
-                sql = "SELECT * FROM imageinfo WHERE Modality = ANY (?) AND Region = ANY (?) AND Patient_name=?";
+                sql = "SELECT * FROM imgs WHERE Modality = ANY (?) AND Region = ANY (?) AND Patient_name=?";
                 psmt = conn.prepareStatement(sql);
                 psmt.setArray(1, modality_aa);
                 psmt.setArray(2, region_aa);

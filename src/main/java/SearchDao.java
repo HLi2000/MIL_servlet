@@ -27,8 +27,8 @@ public class SearchDao {
             String[] modality_a= searchInfo.getModality_a();
             String[] region_a= searchInfo.getRegion_a();
             String patient_name= searchInfo.getPatient_name();
-            String[] modality_all={"MRI","CT","US","Xray"};
-            String[] region_all={"Brain","Chest","Angiogram"};
+            String[] modality_all={"MRI","CT","Ultrasound","X Ray"};
+            String[] region_all={"Arm","Head","Heart","Leg","Body"};
             Array modality_aa;
             Array region_aa;
 

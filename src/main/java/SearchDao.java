@@ -84,7 +84,6 @@ public class SearchDao {
         }finally{
             DBDao.closeConnection(conn);
         }
-
         return img_l.toArray(new Img[0]);
     }
 

@@ -45,6 +45,7 @@ public class SearchDao {
             else {
                 region_aa=conn.createArrayOf("varchar", region_a);
             }
+            String patient_name_like="%"+patient_name+"%";
 
             if (patient_name.equals("")){
                 sql = "SELECT * FROM imgs WHERE modality = ANY (?) AND region = ANY (?)";
@@ -53,11 +54,11 @@ public class SearchDao {
                 psmt.setArray(2, region_aa);
             }
             else{
-                sql = "SELECT * FROM imgs WHERE Modality = ANY (?) AND Region = ANY (?) AND Patient_name=?";
+                sql = "SELECT * FROM imgs WHERE Modality = ANY (?) AND Region = ANY (?) AND Patient_name LIKE ?";
                 psmt = conn.prepareStatement(sql);
                 psmt.setArray(1, modality_aa);
                 psmt.setArray(2, region_aa);
-                psmt.setString(3, patient_name);
+                psmt.setString(3, patient_name_like);
                 //sql = psmt.toString();
             }
             rs = psmt.executeQuery();

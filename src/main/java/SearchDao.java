@@ -47,7 +47,7 @@ public class SearchDao {
             }
             String patient_name_like="%"+patient_name+"%";
 
-            if (patient_name == null){
+            if (patient_name.equals("123")){
                 sql = "SELECT * FROM imgs WHERE modality = ANY (?) AND region = ANY (?)";
                 psmt = conn.prepareStatement(sql);
                 psmt.setArray(1, modality_aa);

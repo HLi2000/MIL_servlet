@@ -51,7 +51,7 @@ public class SearchDao {
             psmt = conn.prepareStatement(sql);
             psmt.setArray(1, modality_aa);
             psmt.setArray(2, region_aa);
-            psmt.setString(3, patient_name_like)
+            psmt.setString(3, patient_name_like);
 
             rs = psmt.executeQuery();
 

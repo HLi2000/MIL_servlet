@@ -2,7 +2,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBDao {
+public class DBConn {
     private static final String dbUrl = System.getenv("JDBC_DATABASE_URL");
     private static final String DB_DRIVER = "org.postgresql.Driver";
     private static Connection conn = null;

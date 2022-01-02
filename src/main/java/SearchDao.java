@@ -22,7 +22,7 @@ public class SearchDao {
         List<Img> img_l = new ArrayList<>();
 
         try {
-            conn = DBDao.getConnection();
+            conn = DBConn.getConnection();
 
             String[] modality_a= searchInfo.getModality_a();
             String[] region_a= searchInfo.getRegion_a();
@@ -74,7 +74,7 @@ public class SearchDao {
             img2.setFile_name(e.toString());
             img_l.add(img2);
         }finally{
-            DBDao.closeConnection(conn);
+            DBConn.closeConnection(conn);
         }
         return img_l.toArray(new Img[0]);
     }

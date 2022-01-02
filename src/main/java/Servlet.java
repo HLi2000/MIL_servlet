@@ -11,32 +11,42 @@ import java.io.OutputStream;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * The Servlet is used to communicate with the client and DB
+ *
+ * @author  Hao Li
+ * @since   2021-12-05
+ */
+
 @WebServlet(urlPatterns = {"/search","/thumbnail","/img"},loadOnStartup = 1)
-public class Selvet extends HttpServlet {
+public class Servlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String path = req.getServletPath();
-        if (Objects.equals(path, "/search")){ //cannot compare use '=='
-            resp.setContentType("text/html");
-            resp.getWriter().write("<h1>Hello, world!<h1>");
-        }
-        else resp.getWriter().write(path);
     }
 
+    /**
+     * doPost method execute 'search', downloading 'thumbnail', or downloading raw 'img' depending on path
+     *
+     * @param req request from client
+     * @param resp response to client
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getServletPath();
 
         switch (path) {
             case "/search": {
+                // Read the body of the request into a SearchInfo
                 String reqBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
                 Gson gson = new Gson();
                 SearchInfo searchInfo = gson.fromJson(reqBody, SearchInfo.class);
 
+                // Search using the searchInfo
                 SearchDao searchDao = new SearchDao();
                 Img[] img_a = searchDao.search(searchInfo);
 
+                // Set up and write the body of the response
                 resp.setContentType("application/json");
                 Gson gson2 = new Gson();
                 String jsonString = gson2.toJson(img_a);
@@ -45,27 +55,39 @@ public class Selvet extends HttpServlet {
             }
 
             case "/thumbnail": {
+                // Read the body of the request
                 String fileName = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 
+                // Create the thumbnail
                 SearchDao searchDao = new SearchDao();
                 InputStream is = searchDao.create_thumbnail(fileName);
 
+                // Write into the body of the response
                 setRespOS(resp, is);
                 break;
             }
 
             case "/img": {
+                // Read the body of the request
                 String fileName = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 
+                // Open the raw image
                 ImgDao imgDao = new ImgDao();
                 InputStream is = imgDao.open_img(fileName);
 
+                // Write into the body of the response
                 setRespOS(resp, is);
                 break;
             }
         }
     }
 
+    /**
+     * Set up the response as an output file stream
+     *
+     * @param resp response
+     * @param is InputStream of thumbnail or raw img
+     */
     private void setRespOS(HttpServletResponse resp, InputStream is) throws IOException {
         byte[] bytes = new byte[1024];
         int len;
@@ -82,3 +104,4 @@ public class Selvet extends HttpServlet {
         }
     }
 }
+

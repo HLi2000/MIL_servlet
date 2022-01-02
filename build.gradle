@@ -8,7 +8,8 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    jcenter() // gretty doesn't exist in mavenCentral, so use jcenter
+    jcenter()
+    mavenCentral() // gretty doesn't exist in mavenCentral, so use jcenter
 }
 
 war{
@@ -25,6 +26,7 @@ build.mustRunAfter clean
 
 dependencies {
     // to include the servlet libraries
+    implementation 'org.mockito:mockito-all:1.10.19'
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     testImplementation group: 'junit', name: 'junit', version: '4.12'
     implementation group: 'com.google.code.gson', name:'gson', version: '2.7'

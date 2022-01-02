@@ -10,7 +10,7 @@ public class DBConn {
     //set up URL and DB driver
     private static String USER = "gpshqobtqpqlne";
     private static String PASSWORD = "66346f36dbd47a5aadaded42e02637792bc85123b87cbaeca609af48b5a8d700";
-    private static String DB_URL = "jdbc:postgresql://ec2-54-171-25-232.eu-west-1.compute.amazonaws.com:5432/d3lvpbc9i53ofu";
+    private static String DB_URL = "jdbc:postgresql://ec2-54-171-25-232.eu-west-1.compute.amazonaws.com:5432/d3lvpbc9i53ofu?sslmode=require";
     //private static final String dbUrl = System.getenv("JDBC_DATABASE_URL");
     private static final String DB_DRIVER = "org.postgresql.Driver";
     private static Connection conn = null;

@@ -12,6 +12,11 @@ import java.io.*;
 
 import static org.mockito.Mockito.when;
 
+/**
+ * Test the Servlet
+ *
+ * downloading functions are not fully tested because they require image files
+ */
 
 public class TestServlet {
     @Mock
@@ -19,11 +24,12 @@ public class TestServlet {
     @Mock
     HttpServletResponse resp;
     @Before
-    public void setUp() throws Exception{
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
     @Test
     public void testSearch() throws IOException, ServletException {
+        //set up req
         String[] modality_a={"CT"};
         String[] region_a={"Arm"};
         String patient_name="Peter";
@@ -36,17 +42,21 @@ public class TestServlet {
         when(req.getReader()).thenReturn(stringReader);
         when(req.getServletPath()).thenReturn("/search");
 
+        //set up resp
         StringWriter stringWriter=new StringWriter();
         PrintWriter printWriter=new PrintWriter(stringWriter);
         when(resp.getWriter()).thenReturn(printWriter);
 
+        //test
         Servlet servlet=new Servlet();
         servlet.doGet(req,resp);
 
+        //get output
         String output=stringWriter.getBuffer().toString();
         Gson gson2 = new Gson();
         Img[] img_a=gson2.fromJson(output,Img[].class);
 
+        //output should be
         int id=1;
         String modality="CT";
         String region="Arm";
@@ -58,8 +68,8 @@ public class TestServlet {
         img.setRegion(region);
         img.setPatient_name(patient_name);
         img.setFile_name(file_name);
-
         Img[] img_a_should_be={img};
+
         Assert.assertArrayEquals(img_a,img_a_should_be);
     }
 }

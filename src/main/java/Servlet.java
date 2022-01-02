@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -91,12 +90,15 @@ public class Servlet extends HttpServlet {
     private void setRespOS(HttpServletResponse resp, InputStream is) throws IOException {
         byte[] bytes = new byte[1024];
         int len;
+
         try (OutputStream os = resp.getOutputStream()) {
             while ((len = is.read(bytes)) > 0) {
                 os.write(bytes, 0, len);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
+
         } finally {
             if (is != null) {
                 is.close();

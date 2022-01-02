@@ -1,6 +1,10 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Test the Img object class
+ */
+
 public class TestImg {
     @Test
     public void TestImgSet(){
@@ -15,6 +19,7 @@ public class TestImg {
         img.setRegion(region);
         img.setPatient_name(patient_name);
         img.setFile_name(file_name);
+
         Assert.assertEquals(img.getId(),id);
         Assert.assertEquals(img.getModality(),modality);
         Assert.assertEquals(img.getRegion(),region);

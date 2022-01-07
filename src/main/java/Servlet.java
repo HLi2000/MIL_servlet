@@ -47,7 +47,7 @@ public class Servlet extends HttpServlet {
                 else{
                     resp.getWriter().write("registration failed");
                 }
-                resp.getWriter().write("you are registered");
+
                 break;
             }
         }

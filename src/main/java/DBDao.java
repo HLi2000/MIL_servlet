@@ -34,6 +34,7 @@ public class DBDao {
 
         }
         catch(Exception e) {
+            return false;
         }
 
         //check if there is a matched user and  return the result

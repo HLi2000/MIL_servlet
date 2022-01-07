@@ -20,7 +20,8 @@ public class Servlet extends HttpServlet {
                 Gson gson = new Gson();
                 User loginUser = gson.fromJson(reqBody,User.class);//user received from client for login
                 DBDao d1 = new DBDao();
-                loginresult = d1.Login(loginUser);resp.setContentType("text/html");
+                loginresult = d1.Login(loginUser);
+                resp.setContentType("text/html");
                 if(loginresult = true) {
 
                     resp.getWriter().write("correct username and password");
@@ -38,6 +39,7 @@ public class Servlet extends HttpServlet {
                 registerresult = d2.Register(registerUser);
                 //response to client
                 resp.setContentType("text/html");
+
                 if(registerresult = true) {
 
                     resp.getWriter().write("you are registered");
@@ -45,6 +47,7 @@ public class Servlet extends HttpServlet {
                 else{
                     resp.getWriter().write("registration failed");
                 }
+                resp.getWriter().write("you are registered");
                 break;
             }
         }

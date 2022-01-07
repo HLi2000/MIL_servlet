@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Client {
 public void login(User user) throws Exception{
-    URL myURL = new URL("https://loginservlet1248.herokuapp.com/login");
+    URL myURL = new URL("https://mil-servlet.herokuapp/login");
     HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
     //transform user to gson format
 
@@ -38,7 +38,7 @@ public void login(User user) throws Exception{
 }
 
 public void register(User user) throws Exception{
-    URL myURL = new URL("https://loginservlet1248.herokuapp.com/register");
+    URL myURL = new URL("https://mil-servlet.herokuapp.com/register");
     HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
     //transform user to gson format
 
@@ -53,7 +53,9 @@ public void register(User user) throws Exception{
     try (OutputStream outputStream = conn.getOutputStream()) {
         outputStream.write(body, 0, body.length);
     }
-
+    catch(Exception e){
+        System.out.println("false in body");
+    }
     BufferedReader bufferedReader = new BufferedReader(new
             InputStreamReader(conn.getInputStream(), "utf-8"));
     String inputLine;//responded text from servlet

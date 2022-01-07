@@ -6,7 +6,8 @@ public class Main {
         u.hashcode();
 
         Client c = new Client();
-        c.register(u);
+        c.login(u);
+
 
     }
 }

@@ -13,7 +13,7 @@ public class DBDao {
     public boolean Login(User user){
         username = user.username;
         password = user.password;
-        SQL = "select * from xx where username = ? and password = ?";//select matched user
+        SQL = "select * from account where username = ? and password = ?";//select matched user
         PreparedStatement pstmt = null;//used to execute sql statement with parameters
         Connection connection = null;
         User dbuser = new User();
@@ -48,7 +48,7 @@ public class DBDao {
     public boolean Register(User user){
         username = user.username;
         password = user.password;
-        SQL = "insert ignore into xx (username,password) values(?,?)";//insert new user into the table
+        SQL = "insert ignore into account (username,password) values(?,?)";//insert new user into the table
         PreparedStatement pstmt = null;//used to execute sql statement with parameters
         Connection connection = null;
 

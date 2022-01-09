@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * @since   2021-12-05
  */
 
-@WebServlet(urlPatterns = {"/search","/thumbnail","/img"},loadOnStartup = 1)
+@WebServlet(urlPatterns = {"/login","/register","/search","/thumbnail","/img"},loadOnStartup = 1)
 public class Servlet extends HttpServlet {
 
     @Override
@@ -35,6 +35,43 @@ public class Servlet extends HttpServlet {
         String path = req.getServletPath();
 
         switch (path) {
+            case "/login":{
+                String reqBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+                Gson gson = new Gson();
+                User loginUser = gson.fromJson(reqBody,User.class);//user received from client for login
+                AccountDao accountDao = new AccountDao();
+                boolean loginResult = accountDao.Login(loginUser);//the search result
+
+                //response to the client
+                resp.setContentType("text/html");
+                if(loginResult) {
+
+                    resp.getWriter().write("correct username and password");
+                }
+                else{
+                    resp.getWriter().write("wrong username or password");
+                }
+
+                break;
+            }
+            case "/register":{
+                String reqBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+                Gson gson = new Gson();
+                User registerUser = gson.fromJson(reqBody,User.class);//user received from client for registration
+                AccountDao accountDao = new AccountDao();
+                boolean registerResult = accountDao.Register(registerUser);
+
+                //response to client
+                resp.setContentType("text/html");
+                if(!registerResult) {
+                    resp.getWriter().write("registration failed");
+                }
+                else{
+                    resp.getWriter().write("you are registered");
+                }
+
+                break;
+            }
             case "/search": {
                 // Read the body of the request into a SearchInfo
                 String reqBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));

@@ -24,7 +24,6 @@ public class AccountDao {
                 dbuser.setH_password(rset.getInt("password"));
             }
             pstmt.close();
-            conn.close();
         }
         catch(Exception e) {
             System.out.println(e);
@@ -49,13 +48,11 @@ public class AccountDao {
             pstmt.setInt(2, password);
             pstmt.executeQuery();
             pstmt.close();
-
         }
         catch (Exception e){
             System.out.println("dao error");
-            return false;
+            return true;
         }
-
         finally {
             DBConn.closeConnection(conn);
         }

@@ -11,8 +11,8 @@ public class DBDao {
 
 
     public boolean Login(User user){
-        username = user.username = 0;
-        password = user.password = 0;
+        username = user.username = 0;//initial  value
+        password = user.password = 0;//initial value
         SQL = "select * from account where username = ? and password = ?";//select matched user
         PreparedStatement pstmt = null;//used to execute sql statement with parameters
         Connection connection = null;
@@ -33,7 +33,7 @@ public class DBDao {
             pstmt.close();
             connection.close();
         }
-        catch(Exception e) {
+        catch(SQLException e) {
             System.out.println(e);
             return false;
         }
@@ -62,7 +62,7 @@ public class DBDao {
             pstmt.close();
 
         }
-        catch (Exception e){
+        catch (SQLException e){
             System.out.println("dao error");
             return false;
         }

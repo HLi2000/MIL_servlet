@@ -50,7 +50,7 @@ public class DBDao {
     public boolean Register(User user){
         username = user.username;
         password = user.password;
-        SQL = "insert ignore into account (username,password) values(?,?)";//insert new user into the table
+        SQL = "insert into account (username,password) values(?,?)";//insert new user into the table
         PreparedStatement pstmt = null;//used to execute sql statement with parameters
         Connection connection = null;
 

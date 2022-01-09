@@ -33,7 +33,7 @@ public class DBDao {
             pstmt.close();
             connection.close();
         }
-        catch(SQLException e) {
+        catch(Exception e) {
             System.out.println(e);
             return false;
         }
@@ -62,7 +62,7 @@ public class DBDao {
             pstmt.close();
 
         }
-        catch (SQLException e){
+        catch (Exception e){
             System.out.println("dao error");
             return false;
         }

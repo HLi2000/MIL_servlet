@@ -20,11 +20,9 @@ public class AccountDao {
             pstmt.setInt(2,password);
             ResultSet rset = pstmt.executeQuery();//execute the command
             if(rset.next()){
-                return true;
-                //dbuser.setH_username(rset.getInt("username"));
-                //dbuser.setH_password(rset.getInt("password"));
+                dbuser.setH_username(rset.getInt("username"));
+                dbuser.setH_password(rset.getInt("password"));
             }
-
             pstmt.close();
             conn.close();
         }
@@ -34,7 +32,7 @@ public class AccountDao {
         }
 
         //check if there is a matched user and  return the result
-        return dbuser.getH_username() != 0 || dbuser.getH_password() != 0;
+        return dbuser.getH_username() != 0 && dbuser.getH_password() != 0;
     }
 
     public boolean Register(User user){

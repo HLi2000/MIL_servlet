@@ -62,13 +62,12 @@ public class Servlet extends HttpServlet {
 
                 //response to client
                 resp.setContentType("text/html");
-                if(!registerResult) {
-                    resp.getWriter().write("registration failed");
-                }
-                else{
+                if(registerResult) {
                     resp.getWriter().write("you are registered");
                 }
-
+                else{
+                    resp.getWriter().write("registration failed");
+                }
                 break;
             }
             case "/search": {

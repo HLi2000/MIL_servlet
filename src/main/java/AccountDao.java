@@ -4,18 +4,13 @@ import java.sql.ResultSet;
 
 public class AccountDao {
 
-    private String SQL;
-    private int username;
-    private int password;
-
     public boolean Login(User user){
-        username = user.username = 0;//initial  value
-        password = user.password = 0;//initial value
-        SQL = "select * from account where username = ? and password = ?";//select matched user
+        int username = user.username;//initial value
+        int password = user.password;//initial value
+        String SQL = "select * from account where username = ? and password = ?";//select matched user
         PreparedStatement pstmt;//used to execute sql statement with parameters
         Connection conn;
         User dbuser = new User();
-
 
         try{
             conn = DBConn.getConnection();//connect to the database
@@ -41,9 +36,9 @@ public class AccountDao {
     }
 
     public boolean Register(User user){
-        username = user.username;
-        password = user.password;
-        SQL = "insert into account (username,password) values(?,?)";//insert new user into the table
+        int username = user.username;
+        int password = user.password;
+        String SQL = "insert into account (username,password) values(?,?)";//insert new user into the table
         PreparedStatement pstmt;//used to execute sql statement with parameters
         Connection conn = null;
 

@@ -3,8 +3,8 @@ public class User {
     public String rawUsername;
     public String rawPassword;
     //hashed
-    public int username;
-    public int password;
+    public int username=0;
+    public int password=0;
 
 
     public void getUsername(String username){
@@ -18,6 +18,6 @@ public class User {
     public void hashcode(){
         username = rawUsername.hashCode() + 1248;
         password = rawPassword.hashCode() + 1248;
-
     }
+
 }

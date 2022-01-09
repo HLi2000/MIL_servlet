@@ -55,7 +55,6 @@ public class DBDao {
 
         try {
             connection = DBConn.getConnection();//connect to the database
-            //to find if the registered user is already existed in the table
             pstmt = (PreparedStatement) connection.prepareStatement(SQL);
             pstmt.setInt(1, username);//replace ? in SQL by username and password
             pstmt.setInt(2, password);

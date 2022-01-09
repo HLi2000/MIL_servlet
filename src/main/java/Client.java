@@ -24,7 +24,9 @@ public void login(User user) throws Exception{
     try (OutputStream outputStream = conn.getOutputStream()) {
         outputStream.write(body, 0, body.length);
     }
-
+    catch(Exception e){
+        System.out.println(e);
+    }
 
     BufferedReader bufferedReader = new BufferedReader(new
             InputStreamReader(conn.getInputStream(), "utf-8"));

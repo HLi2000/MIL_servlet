@@ -23,14 +23,14 @@ public class Servlet extends HttpServlet {
                 loginResult = d1.Login(loginUser);//the search result
                 //response to the client
                 resp.setContentType("text/html");
-                /*if(loginResult = true) {
+                if(loginResult = true) {
 
                     resp.getWriter().write("correct username and password");
                 }
                 else{
                     resp.getWriter().write("wrong username or password");
-                }*/
-                resp.getWriter().write("test");
+                }
+
                 break;
             }
             case "/register":{

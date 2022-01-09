@@ -4,6 +4,8 @@ public class Main {
         u.getUsername("peter");
         u.getPassword("123");
         u.hashcode();
+        System.out.println(u.username);
+        System.out.println(u.password);
 
         Client c = new Client();
 

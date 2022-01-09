@@ -23,14 +23,13 @@ public class DBDao {
             pstmt = connection.prepareStatement(SQL);
             pstmt.setInt(1,username);//replace ? in SQL by username and password
             pstmt.setInt(2,password);
-            Statement s = connection.createStatement();
-            ResultSet rset = s.executeQuery(SQL);
+            ResultSet rset = pstmt.executeQuery(SQL);
             if(rset.next()){
 
                 dbuser.getUsername(rset.getString("username"));
                 dbuser.getPassword(rset.getString("password"));
             }
-            s.close();
+            pstmt.close();
             connection.close();
         }
         catch(Exception e) {
@@ -59,9 +58,8 @@ public class DBDao {
             pstmt = connection.prepareStatement(SQL);
             pstmt.setInt(1, username);//replace ? in SQL by username and password
             pstmt.setInt(2, password);
-            Statement s = connection.createStatement();
-            s.execute(SQL);
-            s.close();
+            pstmt.executeQuery(SQL);
+            pstmt.close();
             connection.close();
         }
         catch (Exception e){

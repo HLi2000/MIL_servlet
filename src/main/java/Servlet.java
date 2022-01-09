@@ -45,7 +45,6 @@ public class Servlet extends HttpServlet {
                 //response to the client
                 resp.setContentType("text/html");
                 if(loginResult) {
-
                     resp.getWriter().write("correct username and password");
                 }
                 else{

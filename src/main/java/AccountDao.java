@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 public class AccountDao {
 
     public boolean Login(User user){
+
         int username = user.getH_username();//initial value
         int password = user.getH_password();//initial value
         String SQL = "select * from account where username = ? and password = ?";//select matched user
@@ -17,7 +18,7 @@ public class AccountDao {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1,username);//replace ? in SQL by username and password
             pstmt.setInt(2,password);
-            ResultSet rset = pstmt.executeQuery(SQL);//execute the command
+            ResultSet rset = pstmt.executeQuery();//execute the command
             if(rset.next()){
                 return true;
                 //dbuser.setH_username(rset.getInt("username"));
@@ -48,7 +49,7 @@ public class AccountDao {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, username);//replace ? in SQL by username and password
             pstmt.setInt(2, password);
-            pstmt.executeQuery(SQL);
+            pstmt.executeQuery();
             pstmt.close();
 
         }

@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) throws Exception{
         User u = new User();
-        u.getUsername("peter");
+        u.getUsername("abc");
         u.getPassword("123");
         u.hashcode();
         System.out.println(u.username);
@@ -9,7 +9,7 @@ public class Main {
 
         Client c = new Client();
 
-        c.register(u);
+
         c.login(u);
 
 

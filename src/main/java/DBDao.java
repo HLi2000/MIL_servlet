@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 public class DBDao {
 
     private String SQL = "";
-    private int username = 0;
-    private int password = 0;
+    private int username;
+    private int password;
 
 
     public boolean Login(User user){
@@ -18,17 +18,19 @@ public class DBDao {
         Connection connection = null;
         User dbuser = new User();
 
+
         try{
             connection = DBConn.getConnection();//connect to the database
             pstmt = connection.prepareStatement(SQL);
             pstmt.setInt(1,username);//replace ? in SQL by username and password
             pstmt.setInt(2,password);
-            ResultSet rset = pstmt.executeQuery(SQL);
+            ResultSet rset = pstmt.executeQuery(SQL);//execute the command
             if(rset.next()){
-
                 dbuser.getUsername(rset.getString("username"));
                 dbuser.getPassword(rset.getString("password"));
             }
+            System.out.println(dbuser.username);
+            System.out.println(dbuser.password);
             pstmt.close();
             connection.close();
         }

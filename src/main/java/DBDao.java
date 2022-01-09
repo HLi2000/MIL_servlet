@@ -29,8 +29,7 @@ public class DBDao {
                 dbuser.getUsername(rset.getString("username"));
                 dbuser.getPassword(rset.getString("password"));
             }
-            System.out.println(dbuser.username);
-            System.out.println(dbuser.password);
+
             pstmt.close();
             connection.close();
         }
@@ -40,11 +39,10 @@ public class DBDao {
         }
 
         //check if there is a matched user and  return the result
-        if(dbuser.username!=0&&dbuser.password!=0){
-            return true;
-        }
-        else{
+        if (dbuser.username == 0 && dbuser.password == 0) {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -52,7 +50,7 @@ public class DBDao {
         username = user.username;
         password = user.password;
         SQL = "insert into account (username,password) values(?,?)";//insert new user into the table
-        PreparedStatement pstmt = null;//used to execute sql statement with parameters
+        PreparedStatement pstmt;//used to execute sql statement with parameters
         Connection connection = null;
 
         try {
@@ -62,13 +60,16 @@ public class DBDao {
             pstmt.setInt(2, password);
             pstmt.executeQuery(SQL);
             pstmt.close();
-            connection.close();
+
         }
         catch (Exception e){
             System.out.println("dao error");
             return false;
         }
 
+        finally {
+            DBConn.closeConnection();
+        }
 
         return true;//successfully registered
     }

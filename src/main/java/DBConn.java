@@ -20,7 +20,7 @@ public class DBConn {
     }
 
 
-    public void closeConnection() {
+    public static void closeConnection() {
         if (connection != null) {
             try {
                 connection.close();

@@ -11,8 +11,8 @@ public class DBDao {
 
 
     public boolean Login(User user){
-        username = user.username;
-        password = user.password;
+        username = user.username = 0;
+        password = user.password = 0;
         SQL = "select * from account where username = ? and password = ?";//select matched user
         PreparedStatement pstmt = null;//used to execute sql statement with parameters
         Connection connection = null;

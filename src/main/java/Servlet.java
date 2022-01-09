@@ -41,11 +41,12 @@ public class Servlet extends HttpServlet {
                 registerResult = d2.Register(registerUser);
                 //response to client
                 resp.setContentType("text/html");
-                if(registerResult = true) {
-                    resp.getWriter().write("you are registered");
+                if(registerResult = false) {
+                    resp.getWriter().write("registration failed");
+
                 }
                 else{
-                    resp.getWriter().write("registration failed");
+                    resp.getWriter().write("you are registered");
                 }
 
                 break;

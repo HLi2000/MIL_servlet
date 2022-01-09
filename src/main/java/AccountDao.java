@@ -19,8 +19,9 @@ public class AccountDao {
             pstmt.setInt(2,password);
             ResultSet rset = pstmt.executeQuery(SQL);//execute the command
             if(rset.next()){
-                dbuser.setH_username(rset.getInt("username"));
-                dbuser.setH_password(rset.getInt("password"));
+                return true;
+                //dbuser.setH_username(rset.getInt("username"));
+                //dbuser.setH_password(rset.getInt("password"));
             }
 
             pstmt.close();

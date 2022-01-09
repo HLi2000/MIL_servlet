@@ -7,6 +7,7 @@ public class Main {
 
         Client c = new Client();
 
+        c.register(u);
         c.login(u);
 
 

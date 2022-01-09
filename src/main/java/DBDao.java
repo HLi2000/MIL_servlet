@@ -20,7 +20,7 @@ public class DBDao {
 
         try{
             connection = DBConn.getConnection();//connect to the database
-            pstmt = (PreparedStatement) connection.prepareStatement(SQL);
+            pstmt = connection.prepareStatement(SQL);
             pstmt.setInt(1,username);//replace ? in SQL by username and password
             pstmt.setInt(2,password);
             Statement s = connection.createStatement();
@@ -31,9 +31,10 @@ public class DBDao {
                 dbuser.getPassword(rset.getString("password"));
             }
             s.close();
-
+            connection.close();
         }
         catch(Exception e) {
+            System.out.println(e);
             return false;
         }
 
@@ -55,14 +56,16 @@ public class DBDao {
 
         try {
             connection = DBConn.getConnection();//connect to the database
-            pstmt = (PreparedStatement) connection.prepareStatement(SQL);
+            pstmt = connection.prepareStatement(SQL);
             pstmt.setInt(1, username);//replace ? in SQL by username and password
             pstmt.setInt(2, password);
             Statement s = connection.createStatement();
+            s.execute(SQL);
             s.close();
-
+            connection.close();
         }
         catch (Exception e){
+            System.out.println("dao error");
             return false;
         }
 

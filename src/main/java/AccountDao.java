@@ -5,8 +5,8 @@ import java.sql.ResultSet;
 public class AccountDao {
 
     public boolean Login(User user){
-        int username = user.username;//initial value
-        int password = user.password;//initial value
+        int username = user.getH_username();//initial value
+        int password = user.getH_password();//initial value
         String SQL = "select * from account where username = ? and password = ?";//select matched user
         PreparedStatement pstmt;//used to execute sql statement with parameters
         Connection conn;
@@ -19,8 +19,8 @@ public class AccountDao {
             pstmt.setInt(2,password);
             ResultSet rset = pstmt.executeQuery(SQL);//execute the command
             if(rset.next()){
-                dbuser.getUsername(rset.getString("username"));
-                dbuser.getPassword(rset.getString("password"));
+                dbuser.setH_username(rset.getInt("username"));
+                dbuser.setH_password(rset.getInt("password"));
             }
 
             pstmt.close();
@@ -32,12 +32,12 @@ public class AccountDao {
         }
 
         //check if there is a matched user and  return the result
-        return dbuser.username != 0 || dbuser.password != 0;
+        return dbuser.getH_username() != 0 || dbuser.getH_password() != 0;
     }
 
     public boolean Register(User user){
-        int username = user.username;
-        int password = user.password;
+        int username = user.getH_username();
+        int password = user.getH_password();
         String SQL = "insert into account (username,password) values(?,?)";//insert new user into the table
         PreparedStatement pstmt;//used to execute sql statement with parameters
         Connection conn = null;

@@ -51,12 +51,33 @@ public class AccountDao {
         }
         catch (Exception e){
             System.out.println("dao error");
-            return true;
         }
         finally {
             DBConn.closeConnection(conn);
         }
 
-        return true;//successfully registered
+        String SQL2 = "select * from account where username = ? and password = ?";
+        User dbuser = new User();
+        try{
+            conn = DBConn.getConnection();//connect to the database
+            pstmt = conn.prepareStatement(SQL2);
+            pstmt.setInt(1,username);//replace ? in SQL by username and password
+            pstmt.setInt(2,password);
+            ResultSet rset = pstmt.executeQuery();//execute the command
+            if(rset.next()){
+                dbuser.setH_username(rset.getInt("username"));
+                dbuser.setH_password(rset.getInt("password"));
+            }
+            pstmt.close();
+        }
+        catch(Exception e) {
+            System.out.println(e);
+            return false;
+        }
+        finally {
+            DBConn.closeConnection(conn);
+        }
+
+        return dbuser.getH_username() != 0 && dbuser.getH_password() != 0;//successfully registered
     }
 }

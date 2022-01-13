@@ -13,9 +13,9 @@ public class TestSearchInfo {
         String patient_name="Peter";
         SearchInfo searchInfo=new SearchInfo(modality_a,region_a,patient_name);
 
-        Assert.assertArrayEquals(searchInfo.getModality_a(),modality_a);
-        Assert.assertArrayEquals(searchInfo.getRegion_a(),region_a);
-        Assert.assertEquals(searchInfo.getPatient_name(),patient_name);
+        Assert.assertArrayEquals(modality_a,searchInfo.getModality_a());
+        Assert.assertArrayEquals(region_a,searchInfo.getRegion_a());
+        Assert.assertEquals(patient_name,searchInfo.getPatient_name());
     }
 
     @Test
@@ -28,8 +28,8 @@ public class TestSearchInfo {
         searchInfo.setRegion(region_a);
         searchInfo.setPatient_name(patient_name);
 
-        Assert.assertArrayEquals(searchInfo.getModality_a(),modality_a);
-        Assert.assertArrayEquals(searchInfo.getRegion_a(),region_a);
-        Assert.assertEquals(searchInfo.getPatient_name(),patient_name);
+        Assert.assertArrayEquals(modality_a,searchInfo.getModality_a());
+        Assert.assertArrayEquals(region_a,searchInfo.getRegion_a());
+        Assert.assertEquals(patient_name,searchInfo.getPatient_name());
     }
 }

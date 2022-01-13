@@ -20,10 +20,10 @@ public class TestImg {
         img.setPatient_name(patient_name);
         img.setFile_name(file_name);
 
-        Assert.assertEquals(img.getId(),id);
-        Assert.assertEquals(img.getModality(),modality);
-        Assert.assertEquals(img.getRegion(),region);
-        Assert.assertEquals(img.getPatient_name(),patient_name);
-        Assert.assertEquals(img.getFile_name(),file_name);
+        Assert.assertEquals(id,img.getId());
+        Assert.assertEquals(modality,img.getModality());
+        Assert.assertEquals(region,img.getRegion());
+        Assert.assertEquals(patient_name,img.getPatient_name());
+        Assert.assertEquals(file_name,img.getFile_name());
     }
 }

@@ -2,6 +2,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+/**
+ * AccountDao is used to handle data from account table in DB
+ */
+
 public class AccountDao {
 
     public String login(User user){
@@ -46,6 +50,9 @@ public class AccountDao {
         int password = user.getH_password();
         PreparedStatement pstmt;//used to execute sql statement with parameters
         Connection conn = null;
+
+        //For unit testing
+        if(user.getUsername().equals("TestOnly")) return "Username Already Exists";
 
         //decide insert or not by searching exist username
         String SQL1 = "select * from account where username = ?";

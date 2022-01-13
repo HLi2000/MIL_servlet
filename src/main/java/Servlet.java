@@ -21,18 +21,15 @@ import java.util.stream.Collectors;
 @WebServlet(urlPatterns = {"/login","/register","/delete","/search","/thumbnail","/img"},loadOnStartup = 1)
 public class Servlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    }
-
     /**
-     * doPost method execute 'search', downloading 'thumbnail', or downloading raw 'img' depending on path
+     * doPost method execute 'login', 'register', 'delete', 'search', downloading 'thumbnail',
+     * or downloading raw 'img' depending on path
      *
      * @param req request from client
      * @param resp response to client
      */
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String path = req.getServletPath();
 
         switch (path) {

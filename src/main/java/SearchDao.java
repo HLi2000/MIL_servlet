@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * SearchDao is used to handle data from DB
+ * SearchDao is used to handle data from img table in DB
  */
 
 public class SearchDao {

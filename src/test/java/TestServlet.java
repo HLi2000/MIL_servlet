@@ -15,6 +15,7 @@ import static org.mockito.Mockito.when;
 /**
  * Test the Servlet
  *
+ * register functions are not fully tested because their tests depend on other req (function)
  * downloading functions are not fully tested because they require image files
  */
 
@@ -28,7 +29,71 @@ public class TestServlet {
         MockitoAnnotations.initMocks(this);
     }
     @Test
-    public void testSearch() throws IOException, ServletException {
+    public void testDelete() throws IOException {
+        //set up req
+        User user = new User();
+        user.setUsername("ABC");
+        user.setPassword("123");
+        user.hashcode();
+
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(user);
+
+        BufferedReader stringReader=new BufferedReader(new StringReader(jsonString));
+        when(req.getReader()).thenReturn(stringReader);
+        when(req.getServletPath()).thenReturn("/delete");
+
+        //set up resp
+        StringWriter stringWriter=new StringWriter();
+        PrintWriter printWriter=new PrintWriter(stringWriter);
+        when(resp.getWriter()).thenReturn(printWriter);
+
+        //test
+        Servlet servlet=new Servlet();
+        servlet.doPost(req,resp);
+
+        //get output
+        String output=stringWriter.getBuffer().toString();
+
+        //output should be
+        String output_should_be="Deleted Successfully";
+
+        Assert.assertEquals(output_should_be,output);
+    }
+    @Test
+    public void testLogin() throws IOException {
+        //set up req
+        User user = new User();
+        user.setUsername("TestOnly");
+        user.setPassword("123");
+        user.hashcode();
+
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(user);
+
+        BufferedReader stringReader=new BufferedReader(new StringReader(jsonString));
+        when(req.getReader()).thenReturn(stringReader);
+        when(req.getServletPath()).thenReturn("/login");
+
+        //set up resp
+        StringWriter stringWriter=new StringWriter();
+        PrintWriter printWriter=new PrintWriter(stringWriter);
+        when(resp.getWriter()).thenReturn(printWriter);
+
+        //test
+        Servlet servlet=new Servlet();
+        servlet.doPost(req,resp);
+
+        //get output
+        String output=stringWriter.getBuffer().toString();
+
+        //output should be
+        String output_should_be="Unknown Username";
+
+        Assert.assertEquals(output_should_be,output);
+    }
+    @Test
+    public void testSearch() throws IOException {
         //set up req
         String[] modality_a={"CT"};
         String[] region_a={"Arm"};

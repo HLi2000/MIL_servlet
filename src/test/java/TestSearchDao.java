@@ -37,9 +37,9 @@ public class TestSearchDao {
         img.setFile_name(file_name);
         Img[] img_a_should_be={img};
 
-        Assert.assertEquals(img_a[0].getId(),img_a_should_be[0].getId());
-        Assert.assertEquals(img_a[0].getRegion(),img_a_should_be[0].getRegion());
-        Assert.assertEquals(img_a[0].getPatient_name(),img_a_should_be[0].getPatient_name());
-        Assert.assertEquals(img_a[0].getFile_name(),img_a_should_be[0].getFile_name());
+        Assert.assertEquals(img_a_should_be[0].getId(),img_a[0].getId());
+        Assert.assertEquals(img_a_should_be[0].getRegion(),img_a[0].getRegion());
+        Assert.assertEquals(img_a_should_be[0].getPatient_name(),img_a[0].getPatient_name());
+        Assert.assertEquals(img_a_should_be[0].getFile_name(),img_a[0].getFile_name());
     }
 }

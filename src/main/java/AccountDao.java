@@ -55,10 +55,11 @@ public class AccountDao {
             pstmt.setInt(1,username);
             ResultSet rset1 = pstmt.executeQuery();
 
-            pstmt.close();
             if(rset1.next()){ //if rset is nonempty
+                pstmt.close();
                 return "Username Already Exists";
             }
+            pstmt.close();
         } catch(Exception e) {
             return e.getMessage();
         } finally {
@@ -89,10 +90,11 @@ public class AccountDao {
             pstmt.setInt(2,password);
             ResultSet rset2 = pstmt.executeQuery();//execute the command
 
-            pstmt.close();
             if(rset2.next()){
+                pstmt.close();
                 return "Registered Successfully";
             }
+            pstmt.close();
             return "Registration Failed";
         } catch(Exception e) {
             return e.getMessage();

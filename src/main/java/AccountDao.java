@@ -60,16 +60,15 @@ public class AccountDao {
 
             if(rset.next()){ //if rset is nonempty
                 pstmt.close();
-                return "Username Already Exists";
+                msg = "Username Already Exists";
+                return msg;
             }
-
-            pstmt.close();
+            else pstmt.close();
         } catch(Exception e) {
             return e.getMessage();
         } finally {
             DBConn.closeConnection(conn);
         }
-
 
         //insert
         String SQL2 = "insert into account (username,password) values(?,?)";

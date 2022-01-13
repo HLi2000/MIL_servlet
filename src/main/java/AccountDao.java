@@ -8,6 +8,12 @@ import java.sql.ResultSet;
 
 public class AccountDao {
 
+    /**
+     * login method uses info in a user object to check in the DB using SQL
+     *
+     * @param user user info
+     * @return result
+     */
     public String login(User user){
         //initiate message
         String msg;
@@ -44,6 +50,12 @@ public class AccountDao {
         return msg;
     }
 
+    /**
+     * register uses user info to add new account into the DB
+     *
+     * @param user user info
+     * @return result
+     */
     public String register(User user){
         //set up SQL
         int username = user.getH_username();
@@ -110,6 +122,12 @@ public class AccountDao {
         }
     }
 
+    /**
+     * delete uses user info to delete the given account in DB
+     *
+     * @param user user info
+     * @return result
+     */
     public String delete(User user){
         //set up SQL
         int username = user.getH_username();

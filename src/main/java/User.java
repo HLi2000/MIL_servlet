@@ -1,4 +1,10 @@
-public class User {
+import java.io.Serializable;
+
+/**
+ * User is used to store all user info
+ */
+
+public class User implements Serializable {
     //unhashed
     private String username;
     private String password;

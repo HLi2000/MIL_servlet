@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class TestUser {
     @Test
-    public void TestAnUser() {
+    public void TestAUser() {
         //set up a user
         User user = new User();
         user.setUsername("ABC");

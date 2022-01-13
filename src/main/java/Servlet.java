@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * @since   2021-12-05
  */
 
-@WebServlet(urlPatterns = {"/login","/register","/search","/thumbnail","/img"},loadOnStartup = 1)
+@WebServlet(urlPatterns = {"/login","/register","/delete","/search","/thumbnail","/img"},loadOnStartup = 1)
 public class Servlet extends HttpServlet {
 
     @Override
@@ -54,6 +54,19 @@ public class Servlet extends HttpServlet {
                 User registerUser = gson.fromJson(reqBody,User.class);//user received from client for registration
                 AccountDao accountDao = new AccountDao();
                 String registerResult = accountDao.Register(registerUser);
+
+                //response to client
+                resp.setContentType("text/html");
+                resp.getWriter().write(registerResult);
+
+                break;
+            }
+            case "/delete":{
+                String reqBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+                Gson gson = new Gson();
+                User registerUser = gson.fromJson(reqBody,User.class);//user received from client for registration
+                AccountDao accountDao = new AccountDao();
+                String registerResult = accountDao.Delete(registerUser);
 
                 //response to client
                 resp.setContentType("text/html");

@@ -84,11 +84,11 @@ public class AccountDao {
         //verify
         String SQL3 = "select * from account where username = ? and password = ?";
         try{
-            conn = DBConn.getConnection();//connect to the database
+            conn = DBConn.getConnection();
             pstmt = conn.prepareStatement(SQL3);
-            pstmt.setInt(1,username);//replace ? in SQL by username and password
+            pstmt.setInt(1,username);
             pstmt.setInt(2,password);
-            ResultSet rset2 = pstmt.executeQuery();//execute the command
+            ResultSet rset2 = pstmt.executeQuery();
 
             if(rset2.next()){
                 pstmt.close();
@@ -96,6 +96,47 @@ public class AccountDao {
             }
             pstmt.close();
             return "Registration Failed";
+        } catch(Exception e) {
+            return e.getMessage();
+        } finally {
+            DBConn.closeConnection(conn);
+        }
+    }
+
+    public String Delete(User user){
+        //set up SQL
+        int username = user.getH_username();
+        PreparedStatement pstmt;
+        Connection conn = null;
+
+        //delete
+        String SQL1 = "delete from account where username = ?";
+        try{
+            conn = DBConn.getConnection();
+            pstmt = conn.prepareStatement(SQL1);
+            pstmt.setInt(1,username);
+            pstmt.executeUpdate();
+            pstmt.close();
+        } catch(Exception e) {
+            return e.getMessage();
+        } finally {
+            DBConn.closeConnection(conn);
+        }
+
+        //verify
+        String SQL2 = "select * from account where username = ?";
+        try{
+            conn = DBConn.getConnection();
+            pstmt = conn.prepareStatement(SQL2);
+            pstmt.setInt(1,username);
+            ResultSet rset2 = pstmt.executeQuery();
+
+            if(rset2.next()){
+                pstmt.close();
+                return "Deletion Failed";
+            }
+            pstmt.close();
+            return "Deleted Successfully";
         } catch(Exception e) {
             return e.getMessage();
         } finally {

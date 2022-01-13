@@ -57,9 +57,9 @@ public class AccountDao {
             conn = DBConn.getConnection();
             pstmt = conn.prepareStatement(SQL1);
             pstmt.setInt(1,username);
-            ResultSet rset = pstmt.executeQuery();
+            ResultSet rset1 = pstmt.executeQuery();
 
-            if(rset.next()){ //if rset is nonempty
+            if(rset1.next()){ //if rset is nonempty
                 exist=true;
             }
             pstmt.close();
@@ -95,10 +95,10 @@ public class AccountDao {
                 pstmt = conn.prepareStatement(SQL3);
                 pstmt.setInt(1,username);//replace ? in SQL by username and password
                 pstmt.setInt(2,password);
-                ResultSet rset = pstmt.executeQuery();//execute the command
+                ResultSet rset2 = pstmt.executeQuery();//execute the command
 
                 msg = "Registration Failed";
-                if(rset.next()){
+                if(rset2.next()){
                     msg = "Registered Successfully";
                 }
                 pstmt.close();

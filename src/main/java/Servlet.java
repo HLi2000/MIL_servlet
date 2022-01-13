@@ -41,7 +41,7 @@ public class Servlet extends HttpServlet {
                 Gson gson = new Gson();
                 User loginUser = gson.fromJson(reqBody,User.class);//user received from client for login
                 AccountDao accountDao = new AccountDao();
-                String loginResult = accountDao.Login(loginUser);//the search result
+                String loginResult = accountDao.login(loginUser);//the search result
 
                 //response to the client
                 resp.setContentType("text/html");
@@ -54,7 +54,7 @@ public class Servlet extends HttpServlet {
                 Gson gson = new Gson();
                 User registerUser = gson.fromJson(reqBody,User.class);//user received from client for registration
                 AccountDao accountDao = new AccountDao();
-                String registerResult = accountDao.Register(registerUser);
+                String registerResult = accountDao.register(registerUser);
 
                 //response to client
                 resp.setContentType("text/html");
@@ -67,7 +67,7 @@ public class Servlet extends HttpServlet {
                 Gson gson = new Gson();
                 User registerUser = gson.fromJson(reqBody,User.class);//user received from client for registration
                 AccountDao accountDao = new AccountDao();
-                String registerResult = accountDao.Delete(registerUser);
+                String registerResult = accountDao.delete(registerUser);
 
                 //response to client
                 resp.setContentType("text/html");

@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 
 public class AccountDao {
 
-    public String Login(User user){
+    public String login(User user){
         //initiate message
         String msg;
 
@@ -40,7 +40,7 @@ public class AccountDao {
         return msg;
     }
 
-    public String Register(User user){
+    public String register(User user){
         //set up SQL
         int username = user.getH_username();
         int password = user.getH_password();
@@ -103,7 +103,7 @@ public class AccountDao {
         }
     }
 
-    public String Delete(User user){
+    public String delete(User user){
         //set up SQL
         int username = user.getH_username();
         PreparedStatement pstmt;

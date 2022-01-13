@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
  * @since   2021-12-05
  */
 
+
 @WebServlet(urlPatterns = {"/login","/register","/delete","/search","/thumbnail","/img"},loadOnStartup = 1)
 public class Servlet extends HttpServlet {
 

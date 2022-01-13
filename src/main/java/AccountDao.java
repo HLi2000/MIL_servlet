@@ -70,7 +70,7 @@ public class AccountDao {
         }
 
         if(exist){
-            msg="Username Already Exists";
+            return "Username Already Exists";
         }
         else{
             //insert
@@ -97,11 +97,11 @@ public class AccountDao {
                 pstmt.setInt(2,password);
                 ResultSet rset2 = pstmt.executeQuery();//execute the command
 
-                msg = "Registration Failed";
-                if(rset2.next()){
-                    msg = "Registered Successfully";
-                }
                 pstmt.close();
+                if(rset2.next()){
+                    return "Registered Successfully";
+                }
+                return "Registration Failed";
             } catch(Exception e) {
                 return e.getMessage();
             } finally {
@@ -109,6 +109,6 @@ public class AccountDao {
             }
         }
 
-        return msg;
+        //return msg;
     }
 }

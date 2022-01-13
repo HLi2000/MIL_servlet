@@ -58,12 +58,11 @@ public class AccountDao {
             pstmt.setInt(1,username);
             ResultSet rset = pstmt.executeQuery();
 
-            if(rset.next()){ //if rset is nonempty
+            while(rset.next()){ //if rset is nonempty
                 pstmt.close();
-                msg = "Username Already Exists";
-                return msg;
+                return "Username Already Exists";
             }
-            else pstmt.close();
+            pstmt.close();
         } catch(Exception e) {
             return e.getMessage();
         } finally {

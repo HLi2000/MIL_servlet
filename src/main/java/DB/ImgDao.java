@@ -1,3 +1,5 @@
+package DB;
+
 import ij.IJ;
 import ij.ImagePlus;
 
@@ -8,7 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 /**
- * ImgDao is used to handle image file data from Server
+ * DB.ImgDao is used to handle image file data from Server
  */
 
 public class ImgDao {

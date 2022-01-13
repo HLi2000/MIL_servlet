@@ -1,8 +1,10 @@
+package Entities;
+
 import java.io.InputStream;
 import java.io.Serializable;
 
 /**
- * Img is used to store all img info
+ * Entities.Img is used to store all img info
  */
 
 public class Img implements Serializable {

@@ -1,11 +1,11 @@
+import DB.SearchDao;
+import Entities.Img;
+import Entities.SearchInfo;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.servlet.ServletException;
-import java.io.*;
-
 /**
- * Test the SearchDao
+ * Test the DB.SearchDao
  *
  * downloading functions are not fully tested because they require image files
  */

@@ -1,8 +1,10 @@
+import DB.AccountDao;
+import Entities.User;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Test the AccountDao with different input cases
+ * Test the DB.AccountDao with different input cases
  */
 
 public class TestAccountDao {

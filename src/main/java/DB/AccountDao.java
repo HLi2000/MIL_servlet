@@ -1,9 +1,13 @@
+package DB;
+
+import Entities.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- * AccountDao is used to handle data from account table in DB
+ * DB.AccountDao is used to handle data from account table in DB
  */
 
 public class AccountDao {

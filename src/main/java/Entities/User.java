@@ -1,7 +1,9 @@
+package Entities;
+
 import java.io.Serializable;
 
 /**
- * User is used to store all user info
+ * Entities.User is used to store all user info
  */
 
 public class User implements Serializable {

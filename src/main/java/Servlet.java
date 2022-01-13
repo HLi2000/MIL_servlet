@@ -1,3 +1,9 @@
+import DB.AccountDao;
+import DB.ImgDao;
+import DB.SearchDao;
+import Entities.Img;
+import Entities.SearchInfo;
+import Entities.User;
 import com.google.gson.Gson;
 
 import javax.servlet.annotation.WebServlet;
@@ -72,7 +78,7 @@ public class Servlet extends HttpServlet {
                 break;
             }
             case "/search": {
-                // Read the body of the request into a SearchInfo
+                // Read the body of the request into a Entities.SearchInfo
                 String reqBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
                 Gson gson = new Gson();
                 SearchInfo searchInfo = gson.fromJson(reqBody, SearchInfo.class);

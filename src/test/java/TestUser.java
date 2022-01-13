@@ -1,8 +1,9 @@
+import Entities.User;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Test the User object class
+ * Test the Entities.User object class
  */
 
 public class TestUser {

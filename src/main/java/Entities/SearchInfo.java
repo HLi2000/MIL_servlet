@@ -1,7 +1,9 @@
+package Entities;
+
 import java.io.Serializable;
 
 /**
- * SearchInfo is used to store all search keywords info
+ * Entities.SearchInfo is used to store all search keywords info
  */
 
 public class SearchInfo implements Serializable {

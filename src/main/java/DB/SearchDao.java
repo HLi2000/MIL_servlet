@@ -1,3 +1,7 @@
+package DB;
+
+import Entities.Img;
+import Entities.SearchInfo;
 import ij.IJ;
 import ij.ImagePlus;
 import ij.ImageStack;
@@ -14,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * SearchDao is used to handle data from img table in DB
+ * DB.SearchDao is used to handle data from img table in DB
  */
 
 public class SearchDao {
@@ -23,7 +27,7 @@ public class SearchDao {
      * search method does SQL query in DB using keywords in searchInfo and return all results
      *
      * @param searchInfo contains search keywords
-     * @return Img[], an array of result Img objects which contains all image info
+     * @return Entities.Img[], an array of result Entities.Img objects which contains all image info
      */
     public Img[] search(SearchInfo searchInfo){
         // set up params
@@ -74,7 +78,7 @@ public class SearchDao {
             //query
             rs = psmt.executeQuery();
 
-            //read each query result into an Img object
+            //read each query result into an Entities.Img object
             while (rs.next()) {
                 Img img=new Img();
                 img.setId(rs.getInt("Id"));
@@ -90,7 +94,7 @@ public class SearchDao {
             conn.close();
 
         } catch (SQLException e) {
-            // return e info as a File_name in Img
+            // return e info as a File_name in Entities.Img
             Img img2=new Img();
             img2.setFile_name(e.toString());
             img_l.add(img2);

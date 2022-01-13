@@ -40,16 +40,11 @@ public class Servlet extends HttpServlet {
                 Gson gson = new Gson();
                 User loginUser = gson.fromJson(reqBody,User.class);//user received from client for login
                 AccountDao accountDao = new AccountDao();
-                boolean loginResult = accountDao.Login(loginUser);//the search result
+                String loginResult = accountDao.Login(loginUser);//the search result
 
                 //response to the client
                 resp.setContentType("text/html");
-                if(loginResult) {
-                    resp.getWriter().write("correct username and password");
-                }
-                else{
-                    resp.getWriter().write("wrong username or password");
-                }
+                resp.getWriter().write(loginResult);
 
                 break;
             }

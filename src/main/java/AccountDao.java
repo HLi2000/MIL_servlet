@@ -70,7 +70,7 @@ public class AccountDao {
         }
 
         if(exist){
-            return "Username Already Exists";
+            msg = "Username Already Exists";
         }
         else{
             //insert
@@ -109,6 +109,6 @@ public class AccountDao {
             }
         }
 
-        //return msg;
+        return msg;
     }
 }

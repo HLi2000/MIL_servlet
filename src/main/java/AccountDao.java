@@ -52,56 +52,61 @@ public class AccountDao {
 
         //decide insert or not by searching exist username
         String SQL1 = "select * from account where username = ?";
+        boolean exist=false;
         try{
             conn = DBConn.getConnection();
             pstmt = conn.prepareStatement(SQL1);
             pstmt.setInt(1,username);
             ResultSet rset = pstmt.executeQuery();
 
-            while(rset.next()){ //if rset is nonempty
+            if(rset.next()){ //if rset is nonempty
+                exist=true;
+            }
+            pstmt.close();
+        } catch(Exception e) {
+            return e.getMessage();
+        } finally {
+            DBConn.closeConnection(conn);
+        }
+
+        if(exist){
+            msg="Username Already Exists";
+        }
+        else{
+            //insert
+            String SQL2 = "insert into account (username,password) values(?,?)";
+            try {
+                conn = DBConn.getConnection();//connect to the database
+                pstmt = conn.prepareStatement(SQL2);
+                pstmt.setInt(1, username);//replace ? in SQL by username and password
+                pstmt.setInt(2, password);
+                pstmt.executeQuery();
                 pstmt.close();
-                return "Username Already Exists";
+            } catch (Exception e) {
+                return e.getMessage();
+            } finally {
+                DBConn.closeConnection(conn);
             }
-            pstmt.close();
-        } catch(Exception e) {
-            return e.getMessage();
-        } finally {
-            DBConn.closeConnection(conn);
-        }
 
-        //insert
-        String SQL2 = "insert into account (username,password) values(?,?)";
-        try {
-            conn = DBConn.getConnection();//connect to the database
-            pstmt = conn.prepareStatement(SQL2);
-            pstmt.setInt(1, username);//replace ? in SQL by username and password
-            pstmt.setInt(2, password);
-            pstmt.executeQuery();
-            pstmt.close();
-        } catch (Exception e) {
-            return e.getMessage();
-        } finally {
-            DBConn.closeConnection(conn);
-        }
+            //verify
+            String SQL3 = "select * from account where username = ? and password = ?";
+            try{
+                conn = DBConn.getConnection();//connect to the database
+                pstmt = conn.prepareStatement(SQL3);
+                pstmt.setInt(1,username);//replace ? in SQL by username and password
+                pstmt.setInt(2,password);
+                ResultSet rset = pstmt.executeQuery();//execute the command
 
-        //verify
-        String SQL3 = "select * from account where username = ? and password = ?";
-        try{
-            conn = DBConn.getConnection();//connect to the database
-            pstmt = conn.prepareStatement(SQL3);
-            pstmt.setInt(1,username);//replace ? in SQL by username and password
-            pstmt.setInt(2,password);
-            ResultSet rset = pstmt.executeQuery();//execute the command
-
-            msg = "Registration Failed";
-            if(rset.next()){
-                msg = "Registered Successfully";
+                msg = "Registration Failed";
+                if(rset.next()){
+                    msg = "Registered Successfully";
+                }
+                pstmt.close();
+            } catch(Exception e) {
+                return e.getMessage();
+            } finally {
+                DBConn.closeConnection(conn);
             }
-            pstmt.close();
-        } catch(Exception e) {
-            return e.getMessage();
-        } finally {
-            DBConn.closeConnection(conn);
         }
 
         return msg;

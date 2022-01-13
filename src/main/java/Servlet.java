@@ -53,16 +53,12 @@ public class Servlet extends HttpServlet {
                 Gson gson = new Gson();
                 User registerUser = gson.fromJson(reqBody,User.class);//user received from client for registration
                 AccountDao accountDao = new AccountDao();
-                boolean registerResult = accountDao.Register(registerUser);
+                String registerResult = accountDao.Register(registerUser);
 
                 //response to client
                 resp.setContentType("text/html");
-                if(registerResult) {
-                    resp.getWriter().write("you are registered");
-                }
-                else{
-                    resp.getWriter().write("registration failed");
-                }
+                resp.getWriter().write(registerResult);
+
                 break;
             }
             case "/search": {

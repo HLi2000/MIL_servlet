@@ -41,9 +41,9 @@ public class Servlet extends HttpServlet {
             case "/login":{
                 String reqBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
                 Gson gson = new Gson();
-                User loginUser = gson.fromJson(reqBody,User.class);//user received from client for login
+                User loginUser = gson.fromJson(reqBody,User.class);
                 AccountDao accountDao = new AccountDao();
-                String loginResult = accountDao.login(loginUser);//the search result
+                String loginResult = accountDao.login(loginUser);
 
                 //response to the client
                 resp.setContentType("text/html");
@@ -54,7 +54,7 @@ public class Servlet extends HttpServlet {
             case "/register":{
                 String reqBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
                 Gson gson = new Gson();
-                User registerUser = gson.fromJson(reqBody,User.class);//user received from client for registration
+                User registerUser = gson.fromJson(reqBody,User.class);
                 AccountDao accountDao = new AccountDao();
                 String registerResult = accountDao.register(registerUser);
 
@@ -67,7 +67,7 @@ public class Servlet extends HttpServlet {
             case "/delete":{
                 String reqBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
                 Gson gson = new Gson();
-                User registerUser = gson.fromJson(reqBody,User.class);//user received from client for registration
+                User registerUser = gson.fromJson(reqBody,User.class);
                 AccountDao accountDao = new AccountDao();
                 String registerResult = accountDao.delete(registerUser);
 

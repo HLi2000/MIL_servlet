@@ -47,7 +47,7 @@ public class SearchDao {
             String patient_name= searchInfo.getPatient_name();
 
             //in case of no selection, query uses all possible keywords
-            String[] modality_all={"MRI","CT","Ultrasound","X Ray"};
+            String[] modality_all={"MRI","CT","Ultrasound","XRay"};
             String[] region_all={"Arm","Head","Heart","Leg","Body"};
             Array modality_aa;
             Array region_aa;
